@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const visitorElement = document.getElementById("visitor-count");
 
-    visitorElement.textContent = "Visitor counter will be connected soon";
+    if (visitorElement) {
+        visitorElement.textContent = "Visitor counter setup in progress";
+    }
 
 });
