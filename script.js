@@ -1,14 +1,23 @@
 
-// Cloud Resume Challenge - JavaScript
+const apiUrl = "https://2k6ktwcsz2.execute-api.ap-southeast-2.amazonaws.com/";
 
-console.log("Welcome to Esha's Cloud Resume Challenge!");
-
-document.addEventListener("DOMContentLoaded", function () {
-
+document.addEventListener("DOMContentLoaded", async () => {
     const visitorElement = document.getElementById("visitor-count");
 
-    if (visitorElement) {
-        visitorElement.textContent = "Visitor counter setup in progress";
-    }
+    if (!visitorElement) return;
 
+    try {
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            throw new Error("API request failed");
+        }
+
+        const data = await response.json();
+        visitorElement.textContent = data.visitorCount;
+
+    } catch (error) {
+        console.error("Visitor counter error:", error);
+        visitorElement.textContent = "Unavailable";
+    }
 });
